@@ -29,10 +29,14 @@ h1{
 .navbar a{
     margin-left:16px;
     text-decoration: none;
-    padding: 6px;
-    background-color: #e5e4e2;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #f2fdf8;
     color: #323434;
     font-size: medium;
+    border-radius: 10px;
 }
 .navbar a:hover{
     color:#08da8a;
@@ -41,5 +45,40 @@ h1{
 
 /*Register*/
 /*SignIn*/
+.navbar-container{
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+  
+}
+
+.navbar-register h2{
+  font-size: 20px;
+  color: #323434;
+  margin-bottom: 30px;
+}
+
+.navbar-container label{
+  text-align: left;
+  display: block;
+}
+
+.navbar-container input, .navbar-container textarea, .navbar-container select{
+  width: 100%;
+  padding: 6px 10 px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.navbar-container button{
+background: #08da8a;
+color: #f2fdf8;
+border-radius: 8px;
+cursor: pointer;
+}
+
 /*SignOut*/
 

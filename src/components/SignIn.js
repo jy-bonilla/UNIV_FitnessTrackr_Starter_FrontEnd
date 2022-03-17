@@ -15,7 +15,7 @@ const SignIn = () => {
 
         //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
 
-        fetch('https://fitnesstrac-kr.herokuapp.com/api/2110-vpi-web-pt-resources/users/login', {
+        fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -36,14 +36,14 @@ const SignIn = () => {
     return (
         <div className="navbar-container" id='container'>
             <div className="navbar-register" id='navbar'>
-                <h2>LOG IN</h2>
+                <h2>SignIn</h2>
             </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='username'>Username:</label>
                 <input type='text' required name='username' value={username} onChange={(event) => setUsername(event.target.value)} />
                 <label htmlFor='password'>Password:</label>
                 <input type='password' required minLength='4' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
-                <button type='submit'>Log In</button>
+                <button type='submit'>SignIn</button>
             </form>
             <Link to="/Register">Don't have an account yet? Register today!</Link>
         </div>
