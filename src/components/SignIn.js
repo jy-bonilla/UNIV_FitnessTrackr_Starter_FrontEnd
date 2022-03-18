@@ -10,8 +10,8 @@ const SignIn = () => {
 
         //prevents page from being submitted
         event.preventDefault()
-        console.log('username: ', username);
-        console.log('password: ', password);
+        // console.log('username: ', username);
+        // console.log('password: ', password);
 
         //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
 

@@ -10,9 +10,9 @@ const Register = () => {
 
         //prevents page from being submitted
         event.preventDefault()
-        console.log('username: ', username);
-        console.log('password: ', password);
-        console.log('passwordCon:', passwordCon)
+        // console.log('username: ', username);
+        // console.log('password: ', password);
+        // console.log('passwordCon:', passwordCon)
 
         //checks to make sure password and passwordConfirmation match => fetch call else deny fetch call
         if (password !== passwordCon) {
@@ -34,9 +34,9 @@ const Register = () => {
             }).then(response => response.json())
                 .then(result => {
                     console.log(result);
-                    //saves the token from the api to a const and saves it on localStorage
-                    // const { token } = result.data;
-                    // localStorage.setItem('token', token);
+                    // saves the token from the api to a const and saves it on localStorage
+                    const { token } = result.data;
+                    localStorage.setItem('token', token);
 
                 })
                 .catch(console.error);
