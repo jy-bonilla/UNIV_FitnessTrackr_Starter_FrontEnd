@@ -15,16 +15,14 @@ const SignIn = () => {
 
         //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
 
-        fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
+        fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    username: username,
-                    password: password
-                }
+                username: username,
+                password: password
             })
         }).then(response => response.json())
             .then(result => {
