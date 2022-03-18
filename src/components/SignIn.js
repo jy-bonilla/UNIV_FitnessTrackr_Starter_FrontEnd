@@ -10,8 +10,8 @@ const SignIn = () => {
 
         //prevents page from being submitted
         event.preventDefault()
-        // console.log('username: ', username);
-        // console.log('password: ', password);
+        console.log('username: ', username);
+        console.log('password: ', password);
 
         //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
 
@@ -45,7 +45,7 @@ const SignIn = () => {
                 <input type='password' required minLength='4' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
                 <button type='submit'>SignIn</button>
             </form>
-            <Link to="/Register">Don't have an account yet? Register today!</Link>
+            <Link to="/my-app/src/components/Register.js">Don't have an account yet? Register today!</Link>
         </div>
     )
 }
