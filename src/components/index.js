@@ -1,2 +1,7 @@
 export { default as AllActivities } from "./allActivities"
 export { default as CreateActivity } from "./createActivity"
+export { default as IndividualActivity } from "./individualActivity"
+// export { default as Navbar } from "./Navbar"
+// export { default as Register } from "./Register"
+export { default as SignIn } from "./SignIn"
+// export { default as SignOut } from "./SignOut"

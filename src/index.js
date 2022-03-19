@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { useState } from 'react'
 
 
 import {
-  AllActivities
+  AllActivities,
+  IndividualActivity,
+  SignIn
 } from "./components"
 
 const App = () => {
+
+  const [selectedActivity, setSelectedActivity] = useState({})
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Route path="/activities">
-          <AllActivities />
+          {selectedActivity.id ? <IndividualActivity /> : <AllActivities />}
+
         </Route>
-        
+        <Route path="/signin">
+          <SignIn />
+        </Route>
       </div>
     </Router>
   );
