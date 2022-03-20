@@ -4,6 +4,7 @@ import React from 'react';
 const Navbar = (props) => {
     const setSignedIn = props.setSignedIn
     const signedIn = props.signedIn
+    const setSelectedActivity = props.setSelectedActivity
     const handleLogOut = (event) => {
         event.preventDefault()
         setSignedIn(false)
@@ -15,7 +16,7 @@ const Navbar = (props) => {
             <h1>FitnessTracker</h1>
             <div className="links">
                 <Link to="/activities">Activities</Link>
-                {signedIn ? <Link to="/SigOut" onClick={handleLogOut}>SignOut</Link> : <Link to="/SignIn">SignIn</Link>}
+                {signedIn ? <Link to="/signout" onClick={handleLogOut}>SignOut</Link> : <Link to="/signin">SignIn</Link>}
             </div>
         </nav>
     );

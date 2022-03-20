@@ -37,6 +37,7 @@ h1{
     color: #323434;
     font-size: medium;
     border-radius: 10px;
+    border: 1px solid;
 }
 .navbar a:hover{
     color:#08da8a;
@@ -74,44 +75,67 @@ h1{
   display: block;
 }
 
-.navbar-container button{
+/* .navbar-container button{
 background: #08da8a;
 color: #f2fdf8;
 border-radius: 8px;
 cursor: pointer;
+} */
+
+.navbar-container button:hover{
+  background-position: 100px 0;
+  color: #f2fdf8;
 }
+
 /*AllActivities*/
 #allPosts{
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
 }
-.createActivityForm {
+#createactivity {
   display: flex;
   justify-content: space-around;
 }
 
-.createActivityForm label, .createActivityForm input{
+#createactivity label, #createactivity input{
   padding-left: 20px;
   padding-right: 10px;
 }
 
-.createActivityForm button{
-  background: #08da8a;
-  color: #f2fdf8;
+#createactivity button, .navbar-container button{
+  background: -webkit-linear-gradient(0deg,transparent 50%, #08da8a 50%);
+  color:#323434;
   border-radius: 8px;
   cursor: pointer;
   margin-left: 20px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  border: 1px solid;
+  transition: 0.6s;
+  background-size: 400px 80px;
 }
-.activities-post:hover{
+#createactivity button:hover{
+  background-position: 100px 0;
+  color: #f2fdf8;
+}
+
+.allActivities-posts:hover{
   box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
 }
-.activities-post h2{
+#allActivities h2{
   font-size: 20px;
   color: #323434;
   margin-bottom: 8px; 
 }
-.activities-post{
+#allActivities{
+  /* padding: 10px 16px; */
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+}
+.allActivities-posts{
   padding: 5px;
   margin: 25px;
 }

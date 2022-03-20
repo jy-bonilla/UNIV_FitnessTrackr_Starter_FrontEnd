@@ -23,6 +23,8 @@ const SignIn = (props) => {
         //Register a user by submitting form info to POST /users/register
         const results = await callApi({ url: "/users/login", method: "POST", body: loginInfo })
         console.log(results.token)
+        setUsername("")
+        setPassword("")
         if (results) {
             setSignedIn(true)
         }
@@ -44,7 +46,7 @@ const SignIn = (props) => {
                 <input type='password' required minLength='4' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
                 <button type='submit'>SignIn</button>
             </form>
-            <Link to="/my-app/src/components/Register.js">Don't have an account yet? Register today!</Link>
+            <Link to="./Register.js">Don't have an account yet? Register today!</Link>
         </div>
     )
 }

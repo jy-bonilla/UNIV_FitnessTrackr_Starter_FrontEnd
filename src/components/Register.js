@@ -27,11 +27,16 @@ const Register = () => {
 
             //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
             const results = await callApi({ url: "/users/register", method: "POST", body: loginInfo })
-            console.log(results.token)
-            localStorage.setItem("token", results.token)
-            if (results.token === undefined) {
+            console.log(results)
+            setPassword("")
+            setPasswordCon("")
+            if (!results.token) {
                 alert('The username entered is invalid. Please try again.')
-            } else (alert('You have successfully Registered. Welcome!'))
+            } else if (results.token) {
+                localStorage.setItem("token", results.token)
+                alert('You have successfully Registered. Welcome!')
+                setUsername("")
+            }
             // .then(response => response.json())
             //         .then(result => {
             //             console.log(result);

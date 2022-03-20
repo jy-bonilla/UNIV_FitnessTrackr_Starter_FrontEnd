@@ -9,7 +9,6 @@ import {
   Navbar,
   Register,
   SignIn,
-  SignOut,
   AllActivities,
   CreateActivity
 } from "./components"
@@ -30,7 +29,7 @@ const App = () => {
         <Navbar setSignedIn={setSignedIn} signedIn={signedIn} />
         <div className="Content">
           <Switch>
-            <Route path="/my-app/src/components/Register.js">
+            <Route path="/Register.js">
               <Register />
             </Route>
             <Route path="/activities">
