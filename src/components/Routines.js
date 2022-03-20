@@ -1,45 +1,41 @@
-// import React from "react";
-
-// const Routines = ({ token, routines }) => {
-
-//   return <div>
-//     <h1 className='header'>Routines Page</h1>
-//     {
-//       routines.map(routine => <div key={routine.id}> {routine.name}, {routine.goal}:
-//       {routine.activities.map(activity => <div key={activity.id}> {activity.name}, { activity.description}, {activity.duration}, {activity.count} </div>)} </div>)
-//     }
-//   </div>
-// };
-
-// export default Routines;
-import React, { useEffect, useState } from "react";
-import { fetchRoutines } from "../api";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { callApi } from '../api';
+import Routine from './Routine';
 
 const Routines = () => {
-  const [routines, setRoutines] = useState([]);
 
-  const handleRoutines = async () => {
-    const fetchedRoutines = await fetchRoutines();
-    setRoutines(fetchedRoutines);
-  };
+    const [routineList, setRoutineList] = useState([]);
 
-  useEffect(() => {
-    handleRoutines();
-  }, []);
+    useEffect( async function(){
+        try {
+            const data = await callApi.makeRequest('/routines', 'GET');
+            console.log(data);
+            setRoutineList(data);
+        } catch(error) {
 
-  return (
-    <div>
-      <h2>Hello welcome to routines</h2>
-      {routines.map((routine) => {
-        return (
-          <div>
-            <div>{routine.name}</div>
-            <div>{routine.goal}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+            console.error(error);
+          }  
+      }, []);
+      console.log(routineList)
+    const routineElement = routineList.map((routine,index) => {
+       return <Routine key={'Routine Number' + index}
+            name={routine.name}
+            goal={routine.goal}
+            creatorName={routine.creatorName}
+            activities={routine.activities}
+        />
+    })
+
+
+    return (
+        <div>
+            <h1>List of all the public routines</h1>
+            <p>Want to update or create a routine? <Link to="/register"> Sign In Here!</Link></p>
+            {routineElement}
+        </div>
+    )
+}
 
 export default Routines;
+

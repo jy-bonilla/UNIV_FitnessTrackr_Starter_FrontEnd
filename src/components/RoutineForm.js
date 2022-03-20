@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
-import { callAPI } from '../api';
+import React, {useState} from 'react';
+import { callApi} from '../api';
+import { Link, useHistory } from 'react-router-dom';
 
-function RoutineForm({ token, fetchRoutines }) {
-    const [name, setName] = useState('');
-    const [goal, setGoal] = useState('');
-    const [isPublic, setIsPublic] = useState('');
 
-    const handleRoutineSubmit = async (ev) => {
-        ev.preventDefault();
+const RoutineForm = (isLoggedIn) => {
 
+    const defaultState = {name: '', goal: '', isPublic: null};
+    const [routine, setroutine] = useState(defaultState);
+
+    let history = useHistory();
+
+
+    function handleChange(event, stateKey){
+        const newroutine = {...routine};
+        let value = event.target.value;
+        newroutine[stateKey] = value;
+        setroutine(newroutine);
+    }
+        
+    async function onSubmit(event) {
         try {
-            const addRoutine = await callAPI({
-                method: 'POST',
-                url: 'routines',
-                token: `${token}`,
-                body: {
-                    name: name,
-                    goal: goal
-                }
-            });
-
-            setName('');
-            setGoal('');
-        } catch (error) {
-            console.error(error);
+            event.preventDefault();
+            const newroutine = {routine}
+            await callApi.makeRequest('/routines', 'routine', newroutine);
+            setroutine(defaultState);
         }
+        catch (error) {
+            console.log(error);
+        }
+        finally{
+            history.push('/routines');
+        }
+    }
 
-        await fetchRoutines();
-    };
-
-    return <div>
-        <h2 className='header'>Add Routine</h2>
-        <form onSubmit={handleRoutineSubmit}>
-            <input placeholder='Name' type='text' value={name} onChange={(ev) => setName(ev.target.value)} />
-            <input placeholder='Goal' type='text' value={goal} onChange={(ev) => setGoal(ev.target.value)} />
-            <input placeholder='Public - true or false' type='text' value={isPublic} onChange={(ev) => setIsPublic(ev.target.value)} />
-            <button type='submit'>Add Routine</button>
-        </form>
-    </div>;
+    return <div className="routine-form">
+        <input onChange={event => handleChange(event, 'name')} id="name" value={routine.name} type="text" required placeholder="Routine Name" />
+        <input onChange={event => handleChange(event, 'goal')} id="goal" value={routine.goal}  type="text" required placeholder="Routine Goal" />
+        <button onClick={onSubmit}>Add routine</button>
+        <Link to="/">Home</Link>
+    </div>
 }
 
 export default RoutineForm;

@@ -1,34 +1,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { callApi } from "../api";
 
 
-const SignIn = () => {
+const SignIn = (props) => {
+    const setSignedIn = props.setSignedIn
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         //prevents page from being submitted
         event.preventDefault()
         // console.log('username: ', username);
         // console.log('password: ', password);
 
-        //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
+        const loginInfo = {
+            username: username,
+            password: password
+        }
 
-        fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        }).then(response => response.json())
-            .then(result => {
-                console.log(result);
-            })
-            .catch(console.error);
+        //Register a user by submitting form info to POST /users/register
+        const results = await callApi({ url: "/users/login", method: "POST", body: loginInfo })
+        console.log(results.token)
+        if (results) {
+            setSignedIn(true)
+        }
+        localStorage.setItem("token", results.token)
+        if (results.token === undefined) {
+            alert('You have entered an invalid username or password')
+        } else (alert('You have successfully SignIn. Welcome!'))
     }
 
     return (
@@ -43,7 +44,7 @@ const SignIn = () => {
                 <input type='password' required minLength='4' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
                 <button type='submit'>SignIn</button>
             </form>
-            <Link to="/my-app/src/components/Register.js">Don't have an account yet? Register today!</Link>
+            <Link to="/register">Don't have an account yet? Register today!</Link>
         </div>
     )
 }
