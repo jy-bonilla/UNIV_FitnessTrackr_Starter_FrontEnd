@@ -30,7 +30,7 @@ const App = () => {
         <Navbar setSignedIn={setSignedIn} signedIn={signedIn} />
         <div className="Content">
           <Switch>
-            <Route path="/my-app/src/components/Register.js">
+            <Route path="/register">
               <Register />
             </Route>
             <Route path="/activities">

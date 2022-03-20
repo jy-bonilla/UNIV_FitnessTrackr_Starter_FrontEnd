@@ -44,7 +44,7 @@ const SignIn = (props) => {
                 <input type='password' required minLength='4' name='password' value={password} onChange={(event) => setPassword(event.target.value)} />
                 <button type='submit'>SignIn</button>
             </form>
-            <Link to="/my-app/src/components/Register.js">Don't have an account yet? Register today!</Link>
+            <Link to="/register">Don't have an account yet? Register today!</Link>
         </div>
     )
 }
