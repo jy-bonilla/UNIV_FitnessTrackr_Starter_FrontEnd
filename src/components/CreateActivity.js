@@ -3,7 +3,7 @@ import { callApi } from '../api';
 
 const CreateActivity = (props) => {
 
-
+    const setLoadedActivities = props.setLoadedActivities
     const loadedActivities = props.loadedActivities
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -18,7 +18,8 @@ const CreateActivity = (props) => {
                 name: name,
                 description: description
             }
-            callApi({ url: "/activities", method: "POST", token: localStorage.getItem("token"), body: data })
+            const results = await callApi({ url: "/activities", method: "POST", token: localStorage.getItem("token"), body: data })
+            setLoadedActivities([...loadedActivities, results])
         } else {
             alert("Activity " + name + " already exists")
         }

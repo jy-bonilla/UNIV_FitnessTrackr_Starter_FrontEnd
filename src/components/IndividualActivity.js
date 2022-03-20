@@ -17,7 +17,6 @@ const IndividualActivity = (props) => {
         })
     }, []);
 
-
     return (
         <div>
             {individualRoutine.length

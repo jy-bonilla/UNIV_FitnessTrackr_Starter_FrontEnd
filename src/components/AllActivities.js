@@ -20,7 +20,7 @@ const AllActivities = (props) => {
     return (
         <div id="allActivities">
             {(localStorage.token) ?
-                <CreateActivity loadedActivities={loadedActivities} /> :
+                <CreateActivity loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} /> :
                 <></>}
             {loadedActivities.map((item, index) =>
                 <div key={index}>
@@ -29,7 +29,7 @@ const AllActivities = (props) => {
                         <h2 key={"name" + index}>{item.name}</h2>
                     </Link>
                     <p key={"desc" + index}>{item.description}</p>
-                    <EditActivity />
+                    <EditActivity loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} id={item.id} origName={item.name} origDescription={item.description} />
                 </div>)}
         </div>
     );
