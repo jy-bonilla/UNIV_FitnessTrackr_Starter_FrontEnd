@@ -40,7 +40,7 @@ const CreateActivity = (props) => {
                 <input type='text' value={name} onChange={handleMessageChange} name='name' />
                 <label htmlFor='description'>Description:</label>
                 <input type='text' name='description' value={description} onChange={handleDescriptionChange} />
-                <button type='submit'>Submit</button>
+                <button type='submit'>Submit Activity</button>
             </form>
         </div>
     )
