@@ -14,12 +14,12 @@ const AllActivities = () => {
     }, []);
 
     return (
-        <div id="allPosts">
+        <div className="allPosts-list" id="allPosts">
             {(localStorage.token) ?
                 <CreateActivity loadedActivities={loadedActivities} /> :
                 <></>}
             {loadedActivities.map((item, index) =>
-                <div key={index}><h2 onClick={() => console.log("clicked" + item.id)} key={"name" + index}>{item.name}</h2>
+                <div className="activities-post" key={index}><h2 onClick={() => console.log("clicked" + item.id)} key={"name" + index}>{item.name}</h2>
                     <p key={"desc" + index}>{item.description}</p>
                 </div>)}
         </div>

@@ -54,7 +54,7 @@ const CreateActivity = (props) => {
         setDescription(event.target.value)
     }
     return (
-        <div id="createactivity">
+        <div className="createActivityForm" id="createactivity">
             <form onSubmit={handleCreateActivitySubmit}>
                 <label htmlFor='name'>Name:</label>
                 <input type='text' value={name} onChange={handleMessageChange} name='name' />
