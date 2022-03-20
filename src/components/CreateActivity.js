@@ -26,28 +26,6 @@ const CreateActivity = (props) => {
         setName("")
         setDescription("")
     }
-    // loadedActivities.map(item => {
-    //     if (item.name.toLowerCase() === name.toLowerCase()) {
-    //         console.log(name + " already exists")
-    //     }
-    //     console.log("test")
-    //     return name
-    // })
-
-    // async function createActivity(data) {
-    //     try {
-    //         const response = await fetch(`${API}/activities`, {
-    //             method: "POST",
-    //             body: JSON.stringify(
-    //                 data
-    //             )
-    //         });
-    //         const result = await response.json();
-    //         return result
-    //     } catch (error) {
-    //         throw error
-    //     }
-    // }
     const handleMessageChange = (event) => {
         setName(event.target.value)
     }
@@ -55,7 +33,8 @@ const CreateActivity = (props) => {
         setDescription(event.target.value)
     }
     return (
-        <div id="createactivity">
+        <div id="createactivity" className="createActivityForm">
+            <h1>Create an Activity</h1>
             <form onSubmit={handleCreateActivitySubmit}>
                 <label htmlFor='name'>Name:</label>
                 <input type='text' value={name} onChange={handleMessageChange} name='name' />

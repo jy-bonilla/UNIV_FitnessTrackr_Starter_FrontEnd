@@ -5,9 +5,6 @@ import EditActivity from './EditActivity';
 import { Link } from "react-router-dom"
 
 const AllActivities = (props) => {
-
-    const setSelectedActivity = props.setSelectedActivity
-    const selectedActivity = props.selectedActivity
     const [loadedActivities, setLoadedActivities] = useState([]);
     useEffect(() => {
         callApi({ url: "/activities" }).then(result => {
@@ -18,15 +15,14 @@ const AllActivities = (props) => {
     }, []);
 
     return (
-        <div id="allActivities">
+        <div className="allPosts-list" id="allPosts">
             {(localStorage.token) ?
                 <CreateActivity loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} /> :
                 <></>}
             {loadedActivities.map((item, index) =>
-                <div key={index}>
-
+                <div key={index} className="activities-post">
                     <Link id="viewindividualactivity" to={`/activities/${item.id}/routines`}>
-                        <h2 key={"name" + index}>{item.name}</h2>
+                        <span id="postTitle"> {item.name}</span>
                     </Link>
                     <p key={"desc" + index}>{item.description}</p>
                     <EditActivity loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} id={item.id} origName={item.name} origDescription={item.description} />
