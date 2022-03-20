@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import CreateActivity from './CreateActivity';
 import { callApi } from '../api';
+import EditActivity from './EditActivity';
+import { Link } from "react-router-dom"
 
+const AllActivities = (props) => {
 
-const AllActivities = () => {
+    const setSelectedActivity = props.setSelectedActivity
+    const selectedActivity = props.selectedActivity
     const [loadedActivities, setLoadedActivities] = useState([]);
     useEffect(() => {
         callApi({ url: "/activities" }).then(result => {
@@ -14,13 +18,18 @@ const AllActivities = () => {
     }, []);
 
     return (
-        <div id="allPosts">
+        <div id="allActivities">
             {(localStorage.token) ?
                 <CreateActivity loadedActivities={loadedActivities} /> :
                 <></>}
             {loadedActivities.map((item, index) =>
-                <div key={index}><h2 onClick={() => console.log("clicked" + item.id)} key={"name" + index}>{item.name}</h2>
+                <div key={index}>
+
+                    <Link id="viewindividualactivity" to={`/activities/${item.id}/routines`}>
+                        <h2 key={"name" + index}>{item.name}</h2>
+                    </Link>
                     <p key={"desc" + index}>{item.description}</p>
+                    <EditActivity />
                 </div>)}
         </div>
     );

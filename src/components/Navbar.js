@@ -4,6 +4,7 @@ import React from 'react';
 const Navbar = (props) => {
     const setSignedIn = props.setSignedIn
     const signedIn = props.signedIn
+    const setSelectedActivity = props.setSelectedActivity
     const handleLogOut = (event) => {
         event.preventDefault()
         setSignedIn(false)

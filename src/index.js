@@ -11,7 +11,8 @@ import {
   SignIn,
   SignOut,
   AllActivities,
-  CreateActivity
+  CreateActivity,
+  IndividualActivity
 } from "./components"
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
       :
       setSignedIn(false)
   }, [])
-  // const [selectedActivity, setSelectedActivity] = useState( {})
+
   return (
     <Router>
       <div className="App">
@@ -33,8 +34,11 @@ const App = () => {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/activities">
+            <Route exact path="/activities">
               <AllActivities />
+            </Route>
+            <Route path="/activities/:id/routines">
+              <IndividualActivity />
             </Route>
             <Route path="/">
               <SignIn setSignedIn={setSignedIn} />

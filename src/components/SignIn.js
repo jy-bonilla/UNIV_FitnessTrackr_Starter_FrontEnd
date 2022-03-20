@@ -23,6 +23,8 @@ const SignIn = (props) => {
         //Register a user by submitting form info to POST /users/register
         const results = await callApi({ url: "/users/login", method: "POST", body: loginInfo })
         console.log(results.token)
+        setUsername("")
+        setPassword("")
         if (results) {
             setSignedIn(true)
         }
