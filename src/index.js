@@ -14,6 +14,7 @@ import {
   CreateActivity,
   IndividualActivity
 } from "./components"
+import Routines from './components/Routines';
 
 const App = () => {
   const [signedIn, setSignedIn] = useState(false)
@@ -36,6 +37,9 @@ const App = () => {
             </Route>
             <Route exact path="/activities">
               <AllActivities />
+            </Route>
+            <Route path="/routines">
+              <Routines />
             </Route>
             <Route path="/activities/:id/routines">
               <IndividualActivity />
