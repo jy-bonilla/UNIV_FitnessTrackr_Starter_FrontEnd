@@ -34,7 +34,7 @@ const EditActivity = (props) => {
     return (
         clicked ?
             <div>
-                <div id="editactivity">
+                <div className="editActivty-Options" id="editactivity">
                     <form onSubmit={handleEditActivitySubmit}>
                         <label htmlFor='name'>Name:</label>
                         <input type='text' value={name} onChange={handleMessageChange} name='name' />
@@ -44,7 +44,7 @@ const EditActivity = (props) => {
                     </form>
                 </div>
             </div> :
-            <div>
+            <div id="editactivity">
                 <button onClick={() => setClicked(true)}>Edit Activity</button>
             </div>
     )
