@@ -23,7 +23,7 @@ const App = () => {
       :
       setSignedIn(false)
   }, [])
-  // const [selectedActivity, setSelectedActivity] = useState({})
+  // const [selectedActivity, setSelectedActivity] = useState( {})
   return (
     <Router>
       <div className="App">
