@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { callApi } from "../api";
 
 
-const SignIn = () => {
+const SignIn = (props) => {
+    const setSignedIn = props.setSignedIn
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -22,6 +23,9 @@ const SignIn = () => {
         //Register a user by submitting form info to POST /users/register
         const results = await callApi({ url: "/users/login", method: "POST", body: loginInfo })
         console.log(results.token)
+        if (results) {
+            setSignedIn(true)
+        }
         localStorage.setItem("token", results.token)
         if (results.token === undefined) {
             alert('You have entered an invalid username or password')

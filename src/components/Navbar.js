@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const setSignedIn = props.setSignedIn
+    const signedIn = props.signedIn
+    const handleLogOut = (event) => {
+        event.preventDefault()
+        setSignedIn(false)
+        localStorage.removeItem("token")
+    }
+
     return (
         <nav className="navbar">
             <h1>FitnessTracker</h1>
             <div className="links">
-                <Link to="/my-app/src/components/SignIn.js">SignIn</Link>
-                <Link to="/my-app/src/components/SignOut.js">SignOut</Link>
+                <Link to="/activities">Activities</Link>
+                {signedIn ? <Link to="/signout" onClick={handleLogOut}>SignOut</Link> : <Link to="/signin">SignIn</Link>}
             </div>
         </nav>
     );
