@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useState } from 'react';
 import './index.css';
 
 
@@ -8,18 +9,28 @@ import {
   Navbar,
   Register,
   SignIn,
-  SignOut
+  SignOut,
+  AllActivities,
+  CreateActivity
 } from "./components"
 
 const App = () => {
+
+  // const [selectedActivity, setSelectedActivity] = useState({})
   return (
     <Router>
       <div className="App">
         <Navbar />
         <div className="Content">
           <Switch>
-            <Route exact path="/my-app/src/components/Register.js">
+            <Route path="/my-app/src/components/Register.js">
               <Register />
+            </Route>
+            <Route exact path="/my-app/src/components/AllActivities.js">
+              <AllActivities />
+            </Route>
+            <Route exact path="/my-app/src/components/CreateActivity.js">
+              <CreateActivity />
             </Route>
             <Route exact path="/my-app/src/components/SignIn.js">
               <SignIn />

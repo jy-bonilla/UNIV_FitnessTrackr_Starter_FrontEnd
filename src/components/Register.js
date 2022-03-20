@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { callApi } from "../api";
 
 
 const Register = () => {
@@ -6,10 +7,14 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [passwordCon, setPasswordCon] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         //prevents page from being submitted
         event.preventDefault()
+        const loginInfo = {
+            username: username,
+            password: password
+        }
         // console.log('username: ', username);
         // console.log('password: ', password);
         // console.log('passwordCon:', passwordCon)
@@ -21,25 +26,21 @@ const Register = () => {
 
 
             //Register a user by submitting form info to POST /api/COHORT-NAME/users/register
-
-            fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            }).then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                    // saves the token from the api to a const and saves it on localStorage
-                    const { token } = result.data;
-                    localStorage.setItem('token', token);
-
-                })
-                .catch(console.error);
+            const results = await callApi({ url: "/users/register", method: "POST", body: loginInfo })
+            console.log(results.token)
+            localStorage.setItem("token", results.token)
+            if (results.token === undefined) {
+                alert('The username entered is invalid. Please try again.')
+            } else (alert('You have successfully Registered. Welcome!'))
+            // .then(response => response.json())
+            //         .then(result => {
+            //             console.log(result);
+            //             // saves the token from the api to a const and saves it on localStorage
+            //             // const { token } = result.data;
+            //             localStorage.setItem('token', results.token);
+            //         })
+            //         .catch(console.error);
+            // }
         }
     }
 
