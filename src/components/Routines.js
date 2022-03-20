@@ -7,7 +7,6 @@ const Routines = () => {
 
     const [routineList, setRoutineList] = useState([]);
 
-
     useEffect(() => {
         callApi({ url: "/routines" }).then(result => {
             setRoutineList(result)
@@ -29,7 +28,6 @@ const Routines = () => {
     return (
         <div>
             <h1>List of all the public routines</h1>
-            <p>Want to update or create a routine? <Link to="/register"> Sign In Here!</Link></p>
             {routineElement}
         </div>
     )
