@@ -5,14 +5,8 @@ import EditActivity from './EditActivity';
 import { Link } from "react-router-dom"
 
 const AllActivities = (props) => {
-    const [loadedActivities, setLoadedActivities] = useState([]);
-    useEffect(() => {
-        callApi({ url: "/activities" }).then(result => {
-            setLoadedActivities(result)
-        }).catch(error => {
-            console.error(error)
-        })
-    }, []);
+    const loadedActivities = props.loadedActivities
+    const setLoadedActivities = props.setLoadedActivities
 
     return (
         <div className="allPosts-list" id="allPosts">

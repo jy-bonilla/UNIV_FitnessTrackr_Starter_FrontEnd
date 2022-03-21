@@ -3,22 +3,24 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './index.css';
+import { callApi } from './api';
 
 
 import {
   Navbar,
   Register,
   SignIn,
-  SignOut,
   AllActivities,
-  CreateActivity,
   IndividualActivity,
   MyRoutines
 } from "./components"
 import Routines from './components/Routines';
 
 const App = () => {
+
   const [signedIn, setSignedIn] = useState(false)
+
+
   useEffect(() => {
     localStorage.getItem("token")
       ?
@@ -26,6 +28,17 @@ const App = () => {
       :
       setSignedIn(false)
   }, [])
+
+  const [loadedActivities, setLoadedActivities] = useState([]);
+  useEffect(() => {
+    callApi({ url: "/activities" }).then(result => {
+      setLoadedActivities(result)
+    }).catch(error => {
+      console.error(error)
+    })
+  }, []);
+
+
 
   return (
     <Router>
@@ -37,7 +50,7 @@ const App = () => {
               <Register />
             </Route>
             <Route exact path="/activities">
-              <AllActivities />
+              <AllActivities loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} />
             </Route>
             <Route path="/routines">
               <Routines />
@@ -46,7 +59,7 @@ const App = () => {
               <IndividualActivity />
             </Route>
             <Route path="/myroutines">
-              <MyRoutines signedIn={signedIn} />
+              <MyRoutines signedIn={signedIn} loadedActivities={loadedActivities} setLoadedActivities={setLoadedActivities} />
             </Route>
             <Route path="/">
               <SignIn setSignedIn={setSignedIn} />

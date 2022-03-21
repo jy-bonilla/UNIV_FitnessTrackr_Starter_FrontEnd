@@ -28,7 +28,9 @@ const EditRoutine = (props) => {
         setClicked(false)
         // if (results) {
         //     const newRoutines = userRoutines.filter((activity) => activity.id !== id)
-        //     setUserRoutines([...newRoutines, results])
+        //     newRoutines.unshift(results)
+        //     console.log(newRoutines)
+        //     // setUserRoutines([...newRoutines])
         // }
     }
     return (

@@ -1,43 +1,50 @@
+
 import React, { useState } from 'react';
 import { callApi } from '../api';
-import { useHistory } from 'react-router-dom';
 
+const RoutineForm = (props) => {
 
-const RoutineForm = (isLoggedIn) => {
-
-    const defaultState = { name: '', goal: '', isPublic: null };
-    const [routine, setroutine] = useState(defaultState);
-
-    let history = useHistory();
-
-
-    function handleChange(event, stateKey) {
-        const newroutine = { ...routine };
-        let value = event.target.value;
-        newroutine[stateKey] = value;
-        setroutine(newroutine);
+    const userRoutines = props.userRoutines
+    const setUserRoutines = props.setUserRoutines
+    const [name, setName] = useState("")
+    const [goal, setGoal] = useState("")
+    const handleCreateRoutineSubmit = async (event) => {
+        event.preventDefault()
+        const data = {
+            name: name,
+            goal: goal,
+            isPublic: true
+        }
+        const results = await callApi({ url: "/routines", method: "POST", token: localStorage.getItem("token"), body: data })
+        // if (results) {
+        //     // setUserRoutines([...userRoutines, results])
+        // }
+        // else {
+        //     alert("Could not create Routine, try a different name" + results.error)
+        // }
+        setName("")
+        setGoal("")
     }
-
-    async function onSubmit(event) {
-        try {
-            event.preventDefault();
-            const newroutine = { routine }
-            await callApi.makeRequest('/routines', 'routine', newroutine);
-            setroutine(defaultState);
-        }
-        catch (error) {
-            console.log(error);
-        }
-        finally {
-            history.push('/routines');
-        }
+    const handleNameChange = (event) => {
+        setName(event.target.value)
     }
-
-    return <div className="routine-form">
-        <input onChange={event => handleChange(event, 'name')} id="name" value={routine.name} type="text" required placeholder="Routine Name" />
-        <input onChange={event => handleChange(event, 'goal')} id="goal" value={routine.goal} type="text" required placeholder="Routine Goal" />
-        <button onClick={onSubmit}>Add routine</button>
-    </div>
+    const handleGoalChange = (event) => {
+        setGoal(event.target.value)
+    }
+    return (
+        <div id="createactivity" className="createActivityForm">
+            <h1>Create a Routine</h1>
+            <form onSubmit={handleCreateRoutineSubmit}>
+                <label htmlFor='name'>Name:</label>
+                <input type='text' value={name} onChange={handleNameChange} name='name' />
+                <label htmlFor='goal'>Goal:</label>
+                <input type='text' name='goal' value={goal} onChange={handleGoalChange} />
+                <button type='submit'>Submit New Routine</button>
+            </form>
+        </div>
+    )
 }
+
+
 
 export default RoutineForm;
