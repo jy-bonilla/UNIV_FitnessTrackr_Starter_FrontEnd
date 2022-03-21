@@ -8,25 +8,33 @@ const MyRoutines = (props) => {
     const signedIn = props.signedIn
     // const myRoutines = routines.filter(routine => user.id === routine.creatorId);
     const [userRoutines, setUserRoutines] = useState([])
-
+    const [username, setUsername] = useState([])
     useEffect(() => {
         callApi({ url: "/users/me", token: localStorage.getItem("token") }).then(result => {
-            callApi({ url: `/users/${result.username}/routines` })
-        }).then(result => {
-            setUserRoutines(result)
+            setUsername(result.username)
+        }).catch(error => {
+            console.error(error)
         })
     }, []);
 
+    useEffect(() => {
+        callApi({ url: `/users/${username}/routines` }).then(result => {
+            setUserRoutines(result)
+        }).catch(error => {
+            console.error(error)
+        })
+    }, [username]);
 
     return <div>
         <h1 className='header'>My Routines Page</h1>
         {
             signedIn && localStorage.getItem("token") ? <RoutineForm /> : <></>
         }
-        {/* {
-            userRoutines.map(myRoutine => <div key={myRoutine.id}> {myRoutine.name}, {myRoutine.goal}:
-                {myRoutine.activities.map(activity => <div key={activity.id}> {activity.name}, {activity.description}, {activity.duration}, {activity.count} </div>)} </div>)
-        } */}
+        {/* {userRoutines ?
+            userRoutines.map(myRoutine => <div key={myRoutine.id}> {myRoutine.name}, {myRoutine.goal},
+                {userRoutines.activities.map(activity => <div key={activity.id}> {activity.name}, {activity.description}, {activity.duration}, {activity.count} </div>)} </div>)
+            : <p>Hello</p>} */}
+
     </div>
 }
 
