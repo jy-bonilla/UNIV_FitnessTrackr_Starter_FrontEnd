@@ -40,7 +40,7 @@ const MyRoutines = (props) => {
                 <h2>{myRoutine.name}</h2>
                 <h4>Goal: {myRoutine.goal}</h4>
                 <EditRoutine userRoutines={userRoutines} setUserRoutines={setUserRoutines} origName={myRoutine.name} origGoal={myRoutine.goal} id={myRoutine.id} />
-                <DeleteRoutine />
+                <DeleteRoutine id={myRoutine.id} />
                 {myRoutine.activities.map((activity, index) => <div key={activity.id}>
                     <h3>Activity {index + 1}</h3>
                     <p>Name:{activity.name}</p>
