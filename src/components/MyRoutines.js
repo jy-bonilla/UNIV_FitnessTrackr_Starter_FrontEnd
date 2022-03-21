@@ -24,7 +24,7 @@ const MyRoutines = (props) => {
             signedIn && localStorage.getItem("token") ? <RoutineForm /> : <></>
         }
         {/* {
-            myRoutines.map(myRoutine => <div key={myRoutine.id}> {myRoutine.name}, {myRoutine.goal}:
+            userRoutines.map(myRoutine => <div key={myRoutine.id}> {myRoutine.name}, {myRoutine.goal}:
                 {myRoutine.activities.map(activity => <div key={activity.id}> {activity.name}, {activity.description}, {activity.duration}, {activity.count} </div>)} </div>)
         } */}
     </div>
