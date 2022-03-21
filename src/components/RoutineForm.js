@@ -37,7 +37,6 @@ const RoutineForm = (isLoggedIn) => {
         <input onChange={event => handleChange(event, 'name')} id="name" value={routine.name} type="text" required placeholder="Routine Name" />
         <input onChange={event => handleChange(event, 'goal')} id="goal" value={routine.goal} type="text" required placeholder="Routine Goal" />
         <button onClick={onSubmit}>Add routine</button>
-        <Link to="/">Home</Link>
     </div>
 }
 
