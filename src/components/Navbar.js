@@ -16,7 +16,7 @@ const Navbar = (props) => {
             <h1>FitnessTracker</h1>
             <div className="links">
                 <Link to="/activities">Activities</Link>
-                <Link to="/routines">Routines</Link>
+                <Link to="/routines">All Routines</Link>
                 {signedIn ? <Link to="/myroutines">My Routines</Link> : <></>}
                 {signedIn ? <Link to="/signout" onClick={handleLogOut}>Sign Out</Link> : <Link to="/signin">Sign In</Link>}
             </div>
